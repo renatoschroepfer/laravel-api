@@ -17,20 +17,23 @@ class PessoasController extends Controller
     }
 
     public function store(ValidaPessoa $request)
+    
     {
-        Pessoa::create($request->all());
+
+
+        // dd($request);       
+        // Pessoa::create($request->all());
+
+        $pessoa = new Pessoa();
+
+        $pessoa->nome = $request->nome;
+        $pessoa->email = $request->email;
+
+        $pessoa->save();
 
         return response()->json([
             'message' => 'Usuario cadastrado com sucesso!',
         ], 201);
-
-        // $pessoa = new Pessoa();
-        
-        // $pessoa->NomePessoa = $request->NomePessoa;
-        // $pessoa->EmailPessoa = $request->EmailPessoa;
-
-        // $pessoa->save();
-
     }
 
     public function show($id)

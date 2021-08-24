@@ -14,9 +14,9 @@ class CreatePessoasTable extends Migration
     public function up()
     {
         Schema::create('pessoas', function (Blueprint $table) {
-            $table->id();
-            $table->string('NomePessoa');
-            $table->string('EmailPessoa')->unique();
+             $table->increments('id');
+            $table->string('nome');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

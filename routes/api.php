@@ -14,12 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-
-Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
-    Route::resource('usuarios', 'App\Http\Controllers\Api\PessoasController');
-});
+Route::get('usuario', 'App\Http\Controllers\Api\PessoasController@index');
+Route::get('usuario/{id}', 'App\Http\Controllers\Api\PessoasController@show');
+Route::post('usuario', 'App\Http\Controllers\Api\PessoasController@store');
+Route::patch('usuario/{id}', 'App\Http\Controllers\Api\PessoasController@update');
+Route::delete('usuario/{id}', 'App\Http\Controllers\Api\PessoasController@destroy');

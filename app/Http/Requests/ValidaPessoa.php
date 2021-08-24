@@ -24,8 +24,8 @@ class ValidaPessoa extends ValidacaoDeEntradaUsuario
     public function rules()
     {
         return [
-            'nomepessoa' => 'required | string',
-            'emailpessoa' => 'required|email| string | unique:EmailPessoa',
+            'nome' => 'required | string',
+            'email' => 'required|email| string',
         ];
     }
 }
