@@ -16,7 +16,7 @@ class PessoasController extends Controller
         return Pessoa::all();
     }
 
-    public function store(Request $request)
+    public function store(ValidaPessoa $request)
     {
         Pessoa::create($request->all());
 
