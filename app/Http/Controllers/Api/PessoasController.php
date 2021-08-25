@@ -13,7 +13,6 @@ class PessoasController extends Controller
 
     public function index()
     {
-
         return Pessoa::all();
     }
 
@@ -23,7 +22,7 @@ class PessoasController extends Controller
         Pessoa::create($request->all());
 
         return response()->json([
-            'message' => 'Usuario cadastrado com sucesso!',
+            'mensagem' => 'Usuario cadastrado com sucesso!',
         ], 201);
     }
 
@@ -31,7 +30,7 @@ class PessoasController extends Controller
     {
         return Pessoa::findOrFail($id);
     }
-    
+
     public function update(Request $request, $id)
     {
         $Pessoa = Pessoa::findOrFail($id);
@@ -41,7 +40,7 @@ class PessoasController extends Controller
             'mensagem' => 'Dados alterado com sucesso!',
         ], 200);
     }
-    
+
     public function destroy($id)
     {
         $Pessoa = Pessoa::findOrFail($id);
@@ -49,6 +48,6 @@ class PessoasController extends Controller
 
         return response()->json([
             'mensagem' => 'Dados deletado com sucesso!',
-        ], 204);
+        ], 200);
     }
 }
