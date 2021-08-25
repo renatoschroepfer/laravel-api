@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidaPessoa;
 use App\Models\Pessoa;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -43,8 +44,17 @@ class PessoasController extends Controller
 
     public function destroy($id)
     {
-        $Pessoa = Pessoa::findOrFail($id);
-        $Pessoa->delete();
+        try {
+
+            $Pessoa = Pessoa::findOrFail($id);
+            $Pessoa->delete();
+        } catch (ModelNotFoundException $e) {
+
+            return response()->json([
+                'mensagem' => 'Id informado não encontrado!',
+
+            ], 200);
+        }
 
         return response()->json([
             'mensagem' => 'Dados deletado com sucesso!',
