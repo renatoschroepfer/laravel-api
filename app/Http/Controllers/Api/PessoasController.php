@@ -31,7 +31,7 @@ class PessoasController extends Controller
     {
         return Pessoa::findOrFail($id);
     }
-
+    
     public function update(Request $request, $id)
     {
         $Pessoa = Pessoa::findOrFail($id);
@@ -39,9 +39,9 @@ class PessoasController extends Controller
 
         return response()->json([
             'mensagem' => 'Dados alterado com sucesso!',
-        ], 201);
+        ], 200);
     }
-
+    
     public function destroy($id)
     {
         $Pessoa = Pessoa::findOrFail($id);
@@ -49,6 +49,6 @@ class PessoasController extends Controller
 
         return response()->json([
             'mensagem' => 'Dados deletado com sucesso!',
-        ], 201);
+        ], 204);
     }
 }

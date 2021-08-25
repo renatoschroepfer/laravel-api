@@ -24,8 +24,8 @@ class ValidaPessoa extends ValidacaoDeEntradaUsuario
     public function rules()
     {
         return [
-            'nome' => 'required | string',
-            'email' => 'required|email| string|unique:pessoas,email',
+            'nome' => 'required | min:6 | string',
+            'email' => 'required | email| string | unique:pessoas,email',
         ];
     }
 }
