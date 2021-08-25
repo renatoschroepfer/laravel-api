@@ -20,7 +20,6 @@ class PessoasController extends Controller
     public function store(ValidaPessoa $request)
 
     {
-
         Pessoa::create($request->all());
 
         return response()->json([
@@ -30,18 +29,17 @@ class PessoasController extends Controller
 
     public function show($id)
     {
-
         return Pessoa::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
-        $Pessoa = Pessoa::findorFail($id);
+        $Pessoa = Pessoa::findOrFail($id);
         $Pessoa->update($request->all());
 
         return response()->json([
             'mensagem' => 'Dados alterado com sucesso!',
-        ]);
+        ], 201);
     }
 
     public function destroy($id)
@@ -51,6 +49,6 @@ class PessoasController extends Controller
 
         return response()->json([
             'mensagem' => 'Dados deletado com sucesso!',
-        ]);
+        ], 201);
     }
 }

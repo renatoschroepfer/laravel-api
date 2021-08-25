@@ -25,7 +25,7 @@ class ValidaPessoa extends ValidacaoDeEntradaUsuario
     {
         return [
             'nome' => 'required | string',
-            'email' => 'required|email| string',
+            'email' => 'required|email| string|unique:pessoas,email',
         ];
     }
 }
