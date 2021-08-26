@@ -49,11 +49,11 @@ class PessoasController extends Controller
             $Pessoa = Pessoa::findOrFail($id);
             $Pessoa->delete();
         } catch (ModelNotFoundException $e) {
-
+            
             return response()->json([
                 'mensagem' => 'Id informado não encontrado!',
 
-            ], 200);
+            ], 404);
         }
 
         return response()->json([
