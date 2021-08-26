@@ -26,6 +26,9 @@ class ValidaPessoa extends ValidacaoDeEntradaUsuario
         return [
             'nome' => 'required | min:6 | string',
             'email' => 'required | email| string | unique:pessoas,email',
+            'nacionalidade' => 'required | min:6 | string',
+            'profissao' => 'required | min:6 | string',
+            'data_nascimento' => 'required|date',
         ];
     }
 }

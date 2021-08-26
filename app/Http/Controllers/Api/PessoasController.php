@@ -29,13 +29,28 @@ class PessoasController extends Controller
 
     public function show($id)
     {
-        return Pessoa::findOrFail($id);
+        try {
+            return Pessoa::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'mensagem' => 'O id informado não existe!',
+            ]);
+        }
+        
     }
 
     public function update(Request $request, $id)
     {
-        $Pessoa = Pessoa::findOrFail($id);
-        $Pessoa->update($request->all());
+
+        try {
+            $Pessoa = Pessoa::findOrFail($id);
+            $Pessoa->update($request->all());
+        } catch (modelNotFoundException $e) {
+            return response()->json([
+                'mensagem' => 'Você não pode atualizar os dados. O id informado não existe!',
+            ]);
+        }
+       
 
         return response()->json([
             'mensagem' => 'Dados alterado com sucesso!',
@@ -51,7 +66,7 @@ class PessoasController extends Controller
         } catch (ModelNotFoundException $e) {
             
             return response()->json([
-                'mensagem' => 'Id informado não encontrado!',
+                'mensagem' => 'O id informado não existe!',
 
             ], 404);
         }
