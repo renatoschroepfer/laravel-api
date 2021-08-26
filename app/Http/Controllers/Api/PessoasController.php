@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ValidaPessoa;
+use App\Http\Requests\ValidarUsuarioRequest;
 use App\Models\Pessoa;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class PessoasController extends Controller
         return Pessoa::all();
     }
 
-    public function store(ValidaPessoa $request)
+    public function store(ValidarUsuarioRequest $request)
 
     {
         Pessoa::create($request->all());
@@ -36,7 +36,6 @@ class PessoasController extends Controller
                 'mensagem' => 'O id informado não existe!',
             ]);
         }
-        
     }
 
     public function update(Request $request, $id)
@@ -45,12 +44,12 @@ class PessoasController extends Controller
         try {
             $Pessoa = Pessoa::findOrFail($id);
             $Pessoa->update($request->all());
-        } catch (modelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json([
                 'mensagem' => 'Você não pode atualizar os dados. O id informado não existe!',
             ]);
         }
-       
+
 
         return response()->json([
             'mensagem' => 'Dados alterado com sucesso!',
@@ -58,15 +57,16 @@ class PessoasController extends Controller
     }
 
     public function destroy($id)
+
     {
         try {
 
             $Pessoa = Pessoa::findOrFail($id);
             $Pessoa->delete();
         } catch (ModelNotFoundException $e) {
-            
+
             return response()->json([
-                'mensagem' => 'O id informado não existe!',
+                "mensagem" => "O id informado não existe!",
 
             ], 404);
         }

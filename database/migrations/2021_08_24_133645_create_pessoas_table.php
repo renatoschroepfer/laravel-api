@@ -20,7 +20,6 @@ class CreatePessoasTable extends Migration
             $table->string('nacionalidade')->nullable();
             $table->datetime('data_nascimento')->nullable();
             $table->string('profissao')->nullable();
-            $table->timestamps();
         });
     }
 
